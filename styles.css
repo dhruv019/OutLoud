@@ -432,8 +432,8 @@ h6 {
     }
 
     .mobile-nav-active .mobile-nav-toggle {
-        color: #fff;
-        position: absolute;
+        /* color: #fff; */
+        /* position: absolute; */
         font-size: 32px;
         top: 15px;
         right: 15px;
@@ -445,7 +445,7 @@ h6 {
         /* position: fixed; */
         overflow: hidden;
         inset: 0;
-        background: rgba(33, 37, 41, 0.8);
+        /* background: rgba(33, 37, 41, 0.8); */
         transition: 0.3s;
     }
 
