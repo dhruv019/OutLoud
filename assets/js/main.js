@@ -10,6 +10,30 @@
   "use strict";
 
   /**
+   * Handle loading screen
+   */
+  const loadingScreen = document.querySelector('.loading-screen');
+  const video = document.querySelector('.hero-video');
+
+  // Function to hide loading screen
+  function hideLoadingScreen() {
+    if (loadingScreen) {
+      loadingScreen.classList.add('loaded');
+      // Remove from DOM after animation
+      setTimeout(() => {
+        loadingScreen.remove();
+      }, 600);
+    }
+  }
+
+  // Hide loading screen when video can play
+  if (video) {
+    video.addEventListener('canplay', hideLoadingScreen);
+    // Fallback: Hide loading screen after 5 seconds if video doesn't load
+    setTimeout(hideLoadingScreen, 5000);
+  }
+
+  /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
   function toggleScrolled() {
