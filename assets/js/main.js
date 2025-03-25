@@ -26,15 +26,36 @@
    * Mobile nav toggle
    */
   const mobileNavToggleBtn = document.querySelector('.mobile-nav-toggle');
+  const mobileNavOverlay = document.querySelector('.mobile-nav-overlay');
 
   function mobileNavToogle() {
     document.querySelector('body').classList.toggle('mobile-nav-active');
     mobileNavToggleBtn.classList.toggle('bi-list');
     mobileNavToggleBtn.classList.toggle('bi-x');
   }
+
+  function closeMobileNav() {
+    document.querySelector('body').classList.remove('mobile-nav-active');
+    mobileNavToggleBtn.classList.add('bi-list');
+    mobileNavToggleBtn.classList.remove('bi-x');
+  }
+
   if (mobileNavToggleBtn) {
     mobileNavToggleBtn.addEventListener('click', mobileNavToogle);
   }
+
+  if (mobileNavOverlay) {
+    mobileNavOverlay.addEventListener('click', closeMobileNav);
+  }
+
+  // Close mobile nav when clicking outside
+  document.addEventListener('click', (e) => {
+    if (document.querySelector('.mobile-nav-active')) {
+      if (!e.target.closest('.navmenu') && !e.target.closest('.mobile-nav-toggle')) {
+        closeMobileNav();
+      }
+    }
+  });
 
   /**
    * Hide mobile nav on same-page/hash links
@@ -42,7 +63,7 @@
   document.querySelectorAll('#navmenu a').forEach(navmenu => {
     navmenu.addEventListener('click', () => {
       if (document.querySelector('.mobile-nav-active')) {
-        mobileNavToogle();
+        closeMobileNav();
       }
     });
 
